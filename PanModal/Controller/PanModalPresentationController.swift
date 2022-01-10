@@ -118,6 +118,10 @@ open class PanModalPresentationController: UIPresentationController {
         }
         return view
     }()
+    
+    public func setNeedsBackgroundUpdate() {
+        backgroundView.backgroundColor = presentable?.panModalBackgroundColor
+    }
 
     /**
      A wrapper around the presented view so that we can modify
