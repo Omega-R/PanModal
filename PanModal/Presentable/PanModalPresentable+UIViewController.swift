@@ -59,6 +59,12 @@ public extension PanModalPresentable where Self: UIViewController {
         PanModalAnimator.animate(animationBlock, config: self, completion)
     }
     
+    /**
+     A function wrapper over the `setNeedsBackgroundUpdate()`
+     function in the PanModalPresentationController.
+
+     - Note: This should be called if the color of the background view are changed.
+     */
     func panModalSetNeedsBackgroundUpdate() {
         presentedVC?.setNeedsBackgroundUpdate()
     }

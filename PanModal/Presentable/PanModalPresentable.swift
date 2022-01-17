@@ -172,6 +172,15 @@ public protocol PanModalPresentable: AnyObject {
      Default value is true.
      */
     var showDragIndicator: Bool { get }
+    
+    /**
+     A flag to toggle user interactions on the background view.
+
+     - Note: Return false to forward touches to the presentingViewController.
+
+     Default is true.
+    */
+    var isBackgroundUserInteractionEnabled: Bool { get }
 
     /**
      Asks the delegate if the pan modal should respond to the pan modal gesture recognizer.

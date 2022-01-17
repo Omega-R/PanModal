@@ -116,13 +116,29 @@ open class PanModalPresentationController: UIPresentationController {
                 self?.presentedViewController.dismiss(animated: true)
             }
         }
+        if presentable?.isBackgroundUserInteractionEnabled == false {
+            view.touchesDelegate = touchesDelegate
+        }
         return view
     }()
     
+    /**
+     Touches delegate used to forward touches to view of the presenting view controller
+     */
+    
+    private var touchesDelegate: UIView? {
+        presentable?.isBackgroundUserInteractionEnabled == true ? nil : presentingViewController.view
+    }
+    
+    /**
+     This should be called if background color are changed.
+     */
+    
     func setNeedsBackgroundUpdate() {
         backgroundView.backgroundColor = presentable?.panModalBackgroundColor
+        backgroundView.touchesDelegate = touchesDelegate
     }
-
+    
     /**
      A wrapper around the presented view so that we can modify
      the presented view apperance without changing

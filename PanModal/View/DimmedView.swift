@@ -52,6 +52,8 @@ public class DimmedView: UIView {
     private lazy var tapGesture: UIGestureRecognizer = {
         return UITapGestureRecognizer(target: self, action: #selector(didTapView))
     }()
+    
+    weak var touchesDelegate: UIView?
 
     // MARK: - Initializers
 
@@ -70,6 +72,12 @@ public class DimmedView: UIView {
 
     @objc private func didTapView() {
         didTap?(tapGesture)
+    }
+    
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let view = super.hitTest(point, with: event) else { return nil }
+        guard view == self, let point = touchesDelegate?.convert(point, from: self) else { return view }
+        return touchesDelegate?.hitTest(point, with: event)
     }
 
 }
