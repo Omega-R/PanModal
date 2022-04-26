@@ -100,6 +100,10 @@ public extension PanModalPresentable where Self: UIViewController {
     var isBackgroundUserInteractionEnabled: Bool {
         return true
     }
+    
+    var allowsTapToShortForm: Bool {
+        return false
+    }
 
     func shouldRespond(to panModalGestureRecognizer: UIPanGestureRecognizer) -> Bool {
         return true
