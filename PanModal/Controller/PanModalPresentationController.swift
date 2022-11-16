@@ -114,6 +114,8 @@ open class PanModalPresentationController: UIPresentationController {
         view.didTap = { [weak self] _ in
             if self?.presentable?.allowsTapToDismiss == true {
                 self?.presentedViewController.dismiss(animated: true)
+            } else if self?.presentable?.allowsTapToShortForm == true {
+                self?.transition(to: .shortForm)
             }
         }
         if presentable?.isBackgroundUserInteractionEnabled == false {
